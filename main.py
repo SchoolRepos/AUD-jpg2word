@@ -18,12 +18,19 @@ image_max_height = Inches(7.6)
 # image_max_height = Inches(8.6)
 breakpoint_aspect_ratio = image_max_width / image_max_height
 
-items = listdir(directory)
+files = listdir(directory)
 sectionIdx = 0
-for item in items:
+items = []
+
+for item in files:
     parts = item.split('.')
-    if parts[len(parts)-1] != 'jpg' or parts[len(parts)-1] != 'png':
+    if parts[len(parts)-1] != 'jpg' and parts[len(parts)-1] != 'png':
         continue
+        
+    items.append(item);
+
+for item in items:
+    
     section = document.sections[sectionIdx]
     section.header.is_linked_to_previous = False
     section.header.paragraphs[0].text = "\t\tGlobale ID"
